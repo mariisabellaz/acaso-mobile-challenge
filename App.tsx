@@ -1,20 +1,46 @@
+import {
+  Raleway_400Regular,
+  Raleway_500Medium,
+  Raleway_700Bold,
+  Raleway_700Bold_Italic,
+  useFonts,
+} from '@expo-google-fonts/raleway';
+import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+
+import React, { useCallback } from 'react';
+
+import { ThemeProvider } from 'styled-components/native';
+
+import { Routes } from './src/routes';
+import theme from './src/theme';
+
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    Raleway_400Regular,
+    Raleway_500Medium,
+    Raleway_700Bold,
+    Raleway_700Bold_Italic,
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ThemeProvider theme={theme}>
+      <>
+        <StatusBar style="light" backgroundColor="transparent" translucent />
+        <Routes onLayout={onLayoutRootView} />
+      </>
+    </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
