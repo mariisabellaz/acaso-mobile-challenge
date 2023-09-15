@@ -3,6 +3,7 @@ export default {
     BACKGROUND: {
       PRIMARY: '#030446',
       DARK: '#000000',
+      LIGHT: '#FFFFFF',
     },
     BUTTON: {
       PRIMARY: '#FFFFFF',
@@ -10,7 +11,7 @@ export default {
     },
     TEXT: {
       PRIMARY: '#F6F6F6',
-      BUTTON: '#000000',
+      DARK: '#000000',
       LIGHT: '#FFFFFF',
       ERROR: '#E93F78',
     },

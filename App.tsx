@@ -5,17 +5,13 @@ import {
   Raleway_700Bold_Italic,
   useFonts,
 } from '@expo-google-fonts/raleway';
-import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
-
-import React, { useCallback } from 'react';
-
+import { StatusBar } from 'react-native';
 import { ThemeProvider } from 'styled-components/native';
-
-import { Routes } from './src/routes';
 import theme from './src/theme';
 
-SplashScreen.preventAutoHideAsync();
+import { Loading } from '@components/atoms/Loading';
+
+import { Routes } from './src/routes';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -25,21 +21,11 @@ export default function App() {
     Raleway_700Bold_Italic,
   });
 
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
-
-  if (!fontsLoaded) {
-    return null;
-  }
-
   return (
     <ThemeProvider theme={theme}>
       <>
-        <StatusBar style="light" backgroundColor="transparent" translucent />
-        <Routes onLayout={onLayoutRootView} />
+        <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
+        {fontsLoaded ? <Routes /> : <Loading />}
       </>
     </ThemeProvider>
   );

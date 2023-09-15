@@ -15,6 +15,7 @@ export default {
     RADIUS: {
       BUTTON: normalize(30),
       INPUT: normalize(6),
+      THUMBNAIL: normalize(122),
     },
   },
 };

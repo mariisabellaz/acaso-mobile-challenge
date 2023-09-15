@@ -1,14 +1,14 @@
-import { RFPercentage } from 'react-native-responsive-fontsize';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 export default {
   FONTSIZE: {
-    NONE: RFPercentage(0),
-    XS: RFPercentage(12),
-    SM: RFPercentage(14),
-    MD: RFPercentage(16),
-    LG: RFPercentage(22),
-    XL: RFPercentage(32),
-    XXL: RFPercentage(51),
+    NONE: RFValue(0),
+    XS: RFValue(12),
+    SM: RFValue(14),
+    MD: RFValue(16),
+    LG: RFValue(22),
+    XL: RFValue(32),
+    XXL: RFValue(51),
   },
   FONTFAMILY: {
     REGULAR: 'Raleway_400Regular',

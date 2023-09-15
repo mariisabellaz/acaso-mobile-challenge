@@ -1,6 +1,5 @@
 {
   "env": {
-    "browser": true,
     "es2021": true
   },
   "extends": [
@@ -9,23 +8,23 @@
     "airbnb",
     "airbnb/hooks",
     "prettier",
-    "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
   ],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 12,
+    "ecmaVersion": "latest",
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
   "plugins": [
     "react",
     "react-native",
-    "react-hooks",
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "react-hooks"
   ],
   "rules": {
     "react/no-unused-prop-types": "off",
@@ -43,26 +42,11 @@
     "react/require-default-props": "off",
     "import/prefer-default-export": "off",
     "react/jsx-filename-extension": [
-      1,
+      "warn",
       {
         "extensions": [
-          ".js",
-          ".jsx"
-        ]
-      }
-    ],
-    "no-use-before-define": [
-      "error",
-      {
-        "variables": false
-      }
-    ],
-    "react/prop-types": [
-      "error",
-      {
-        "ignore": [
-          "navigation",
-          "navigation.navigate"
+          ".tsx",
+          ".ts"
         ]
       }
     ],
