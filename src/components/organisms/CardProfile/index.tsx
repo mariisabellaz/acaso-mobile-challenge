@@ -6,12 +6,12 @@ import * as S from './styles';
 
 export type TypeStyleProps = 'icon' | 'image';
 
-type Props = {
+type CardProps = {
   type?: TypeStyleProps;
   imageSource: ImageSourcePropType;
 };
 
-export function CardProfile({ type = 'image', imageSource }: Props) {
+export function CardProfile({ type = 'image', imageSource }: CardProps) {
   return (
     <S.Container source={Background}>
       <ThumbnailCircle.DefaultCircle imageSource={imageSource} />

@@ -28,9 +28,9 @@ const ScreenImageBackground: React.FC<PropsWithChildren & ScreenTypographyProps>
 const ScreenHeader: React.FC<PropsWithChildren & ScreenTypographyProps> = ({ children, label }) => (
   <S.SafeAreaView>
     <Header />
-    <S.Label appearance="title" alignment="center">
+    <S.Title appearance="title" alignment="center">
       {label}
-    </S.Label>
+    </S.Title>
     {children}
   </S.SafeAreaView>
 );

@@ -29,3 +29,7 @@ export const ImageBackground = styled.ImageBackground`
 export const Label = styled(Typography)`
   padding: ${({ theme }) => theme.SPACING.SM}px 0;
 `;
+
+export const Title = styled(Typography)`
+  padding: ${({ theme }) => theme.SPACING.LG}px 0;
+`;

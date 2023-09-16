@@ -1,12 +1,18 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
+type CustomHeaderProps = {
+  top: any;
+};
+
+export const Container = styled.View<CustomHeaderProps>`
   width: 100%;
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND.PRIMARY};
+  margin-top: ${({ top }) => top}px;
+  margin-bottom: ${({ theme }) => theme.SPACING.XL}px;
 
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.COLORS.BACKGROUND.PRIMARY};
 `;
 
 export const Logo = styled.Image``;

@@ -3,7 +3,7 @@ import styled, { DefaultTheme, ThemeProps } from 'styled-components/native';
 
 type AppearanceType = 'default' | 'small';
 
-export type CustomProps = {
+export type CustomThumbnailProps = {
   appearance: AppearanceType;
 };
 
@@ -26,6 +26,6 @@ const styles: {
   `,
 };
 
-export const Avatar = styled.Image<CustomProps>`
+export const Avatar = styled.Image<CustomThumbnailProps>`
   ${({ appearance }) => styles[appearance]}
 `;

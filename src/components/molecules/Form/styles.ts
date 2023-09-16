@@ -7,11 +7,11 @@ const { width } = Dimensions.get('window');
 
 export type ButtonTypeStyleProps = 'PRIMARY' | 'SECONDARY';
 
-type CustomButtonProps = {
+type Props = {
   type: ButtonTypeStyleProps;
 };
 
-export const Container = styled(TouchableOpacity)<CustomButtonProps>`
+export const Container = styled(TouchableOpacity)<Props>`
   height: 56px;
 
   ${({ theme, type }) => css`
@@ -29,7 +29,7 @@ export const Container = styled(TouchableOpacity)<CustomButtonProps>`
   align-items: center;
 `;
 
-export const Label = styled(Typography)<CustomButtonProps>`
+export const Label = styled(Typography)<Props>`
   color: ${({ theme, type }) =>
     type === 'PRIMARY' ? theme.COLORS.TEXT.DARK : theme.COLORS.TEXT.LIGHT};
 `;

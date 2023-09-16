@@ -2,7 +2,7 @@ import { ImageSourcePropType } from 'react-native';
 
 import * as S from './styles';
 
-type ThumbnailImageProps = Partial<S.CustomProps> & {
+type ThumbnailImageProps = Partial<S.CustomThumbnailProps> & {
   testID?: string;
   imageSource: ImageSourcePropType;
 };

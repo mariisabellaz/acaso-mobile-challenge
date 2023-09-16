@@ -3,11 +3,11 @@ import { useTheme } from 'styled-components';
 
 import * as S from './styles';
 
-type Props = {
+type LinearCircleProps = {
   children?: ReactNode;
 };
 
-export function LinearCircle({ children }: Props) {
+export function LinearCircle({ children }: LinearCircleProps) {
   const { COLORS } = useTheme();
 
   return (
