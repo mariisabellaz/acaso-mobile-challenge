@@ -4,16 +4,18 @@ import { ImageSourcePropType } from 'react-native';
 import { Circle } from '@components/atoms/Circle';
 import { LinearCircle } from '@components/atoms/LinearCircle';
 import { Thumbnail } from '@components/atoms/Thumbnail';
+import { UserIcon } from '@components/atoms/UserIcon';
 
 interface ScreenProps {
-  imageSource: ImageSourcePropType;
+  imageSource?: ImageSourcePropType;
+  type?: 'icon' | 'image';
 }
 
 const Page = ({ children }: PropsWithChildren) => <>{children}</>;
 
-const ScreenLinear: React.FC<PropsWithChildren & ScreenProps> = ({ imageSource }) => (
+const ScreenLinear: React.FC<PropsWithChildren & ScreenProps> = ({ imageSource, type }) => (
   <LinearCircle>
-    <Thumbnail imageSource={imageSource} />
+    {type === 'image' ? <Thumbnail imageSource={imageSource} /> : <UserIcon />}
   </LinearCircle>
 );
 

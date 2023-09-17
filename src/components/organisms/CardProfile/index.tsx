@@ -14,7 +14,7 @@ type CardProps = {
 export function CardProfile({ type = 'image', imageSource }: CardProps) {
   return (
     <S.Container source={Background}>
-      <ThumbnailCircle.DefaultCircle imageSource={imageSource} />
+      <ThumbnailCircle.LinearCircle imageSource={imageSource} />
     </S.Container>
   );
 }

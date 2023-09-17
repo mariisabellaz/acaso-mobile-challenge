@@ -5,7 +5,7 @@ import { Typography } from '@components/atoms/Typography';
 
 const { width } = Dimensions.get('window');
 
-export type ButtonTypeStyleProps = 'PRIMARY' | 'SECONDARY';
+export type ButtonTypeStyleProps = 'primary' | 'secondary';
 
 type CustomButtonProps = {
   type: ButtonTypeStyleProps;
@@ -17,8 +17,8 @@ export const Container = styled(TouchableOpacity)<CustomButtonProps>`
   ${({ theme, type }) => css`
     width: ${width - theme.SPACING.XL}px;
     border-radius: ${theme.BORDER.RADIUS.BUTTON}px;
-    opacity: ${type === 'SECONDARY' ? 0.8 : 1};
-    background-color: ${type === 'PRIMARY'
+    opacity: ${type === 'primary' ? 0.8 : 1};
+    background-color: ${type === 'primary'
       ? theme.COLORS.BUTTON.PRIMARY
       : theme.COLORS.BUTTON.SECONDARY};
 
@@ -31,5 +31,5 @@ export const Container = styled(TouchableOpacity)<CustomButtonProps>`
 
 export const Label = styled(Typography)<CustomButtonProps>`
   color: ${({ theme, type }) =>
-    type === 'PRIMARY' ? theme.COLORS.TEXT.DARK : theme.COLORS.TEXT.LIGHT};
+    type === 'primary' ? theme.COLORS.TEXT.DARK : theme.COLORS.TEXT.LIGHT};
 `;

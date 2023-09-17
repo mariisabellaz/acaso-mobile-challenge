@@ -4,13 +4,13 @@ import * as S from './styles';
 
 type ButtonProps = TouchableOpacityProps & {
   title: string;
-  type?: S.ButtonTypeStyleProps;
+  appearance?: S.ButtonTypeStyleProps;
 };
 
-export function Button({ title, type = 'PRIMARY', ...rest }: ButtonProps) {
+export function Button({ title, appearance = 'primary', ...rest }: ButtonProps) {
   return (
-    <S.Container type={type} {...rest}>
-      <S.Label type={type} appearance="button" alignment="center">
+    <S.Container type={appearance} {...rest}>
+      <S.Label type={appearance} appearance="button" alignment="center">
         {title}
       </S.Label>
     </S.Container>

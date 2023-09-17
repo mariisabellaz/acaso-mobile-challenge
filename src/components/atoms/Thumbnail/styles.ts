@@ -1,3 +1,4 @@
+import { Image } from 'react-native';
 import { FlattenInterpolation, css } from 'styled-components';
 import styled, { DefaultTheme, ThemeProps } from 'styled-components/native';
 
@@ -26,6 +27,6 @@ const styles: {
   `,
 };
 
-export const Avatar = styled.Image<CustomThumbnailProps>`
+export const Avatar = styled(Image)<CustomThumbnailProps>`
   ${({ appearance }) => styles[appearance]}
 `;
