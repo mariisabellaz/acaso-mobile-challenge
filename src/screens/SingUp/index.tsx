@@ -8,14 +8,14 @@ import * as S from './styles';
 
 export function SingUp() {
   const { control, handleSubmit, formState } = useForm();
-  const { goBack } = useNavigation();
+  const { navigate, goBack } = useNavigation();
 
   const onSubmit = (data: any) => {
-    console.log('teste', data);
+    navigate('confirmemail');
   };
 
   return (
-    <CommonScreen.Heading label="Login">
+    <CommonScreen.Heading label="Cadastro">
       <S.ContainerForm>
         <Form
           caption="E-mail*"
@@ -53,7 +53,7 @@ export function SingUp() {
           formState={formState}
           placeholder="******"
         />
-        <Button title="Criar conta em aca.so" onPress={handleSubmit(onSubmit)} />
+        <Button title="Criar conta em aca.so" onPress={onSubmit} />
         <Button title="Voltar ao login" type="SECONDARY" onPress={goBack} />
       </S.ContainerForm>
     </CommonScreen.Heading>

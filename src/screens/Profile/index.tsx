@@ -12,7 +12,7 @@ export function Profile() {
   const [isLoading, setIsLoading] = useState(true);
   const [image, setImage] = useState<boolean>(false);
 
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
 
   function handleNewGroup() {
     navigation.navigate('new');

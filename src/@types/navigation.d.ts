@@ -1,10 +1,11 @@
 export declare global {
   namespace ReactNavigation {
     interface RootParamList {
-      addPhoto: undefined;
+      addphoto: undefined;
       profile: undefined;
       login: undefined;
       singup: undefined;
+      confirmemail: undefined;
     }
   }
 }
