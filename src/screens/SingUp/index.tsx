@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form';
 import { ScrollView } from 'react-native';
 import * as yup from 'yup';
 
+import { useAuth } from '@context/authContext';
+
 import { Button } from '@components/molecules/Button';
 import { Form } from '@components/organisms/Form';
 import { CommonScreen } from '@components/templates/DefaultPage';
@@ -14,7 +16,8 @@ import { schema } from './signup.yup';
 type FormData = yup.InferType<typeof schema>;
 
 export function SingUp() {
-  const { navigate, goBack } = useNavigation();
+  const { signUp } = useAuth();
+  const { goBack } = useNavigation();
   const {
     control,
     handleSubmit,
@@ -23,9 +26,8 @@ export function SingUp() {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: FormData) => {
-    console.tron.log('DATA ==>', data);
-    navigate('confirmemail');
+  const onSubmit = async (data: FormData) => {
+    await signUp(data);
   };
 
   return (

@@ -3,6 +3,8 @@ import { useNavigation } from '@react-navigation/native';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
+import { useAuth } from '@context/authContext';
+
 import { Button } from '@components/molecules/Button';
 import { Form } from '@components/organisms/Form';
 import { CommonScreen } from '@components/templates/DefaultPage';
@@ -14,6 +16,7 @@ type FormData = yup.InferType<typeof schema>;
 
 export function Login() {
   const { navigate } = useNavigation();
+  const { signIn } = useAuth();
 
   const {
     control,
@@ -24,7 +27,7 @@ export function Login() {
   });
 
   const onSubmit = (data: FormData) => {
-    console.tron.log('DATA', data);
+    signIn(data);
   };
 
   const goToSingUp = () => {

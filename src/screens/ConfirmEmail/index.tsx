@@ -4,6 +4,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
+import { useAuth } from '@context/authContext';
 import { useFormatTime } from '@hooks/useFormatTime';
 import { useRefreshCode } from '@hooks/useRefreshCode';
 
@@ -19,6 +20,7 @@ type FormData = yup.InferType<typeof schema>;
 export function ConfirmEmail() {
   const { navigate } = useNavigation();
   const { countdown, isCounting, startCountdown } = useRefreshCode();
+  const { confirmCode, refreshCode } = useAuth();
   const {
     control,
     handleSubmit,
@@ -29,8 +31,13 @@ export function ConfirmEmail() {
 
   const formattedTime = useFormatTime(countdown);
 
-  const onSubmit = (data: any) => {
-    console.log('teste', data);
+  const onSubmit = async (data: FormData) => {
+    await confirmCode(data);
+  };
+
+  const onRefreshCode = async () => {
+    startCountdown();
+    await refreshCode();
   };
 
   return (
@@ -56,7 +63,7 @@ export function ConfirmEmail() {
         <Button
           label={isCounting ? `Aguarde ${formattedTime} para reenviar...` : 'Reenviar código'}
           type="secondary"
-          onPress={startCountdown}
+          onPress={onRefreshCode}
           disabled={isCounting}
           accessibilityHint="Reenvia código por e-mail"
         />

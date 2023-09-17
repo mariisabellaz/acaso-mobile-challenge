@@ -6,7 +6,7 @@ import { SingUp } from '@screens/SingUp';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
-export function AppRoutes() {
+export function AuthRoutes() {
   return (
     <Navigator screenOptions={{ headerShown: false }}>
       <Screen name="login" component={Login} />
