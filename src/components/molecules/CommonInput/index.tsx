@@ -15,8 +15,8 @@ export function CommonInput({ caption, error, hasError, ...props }: CommonInputP
   return (
     <S.Container>
       <S.Caption appearance="caption">{caption}</S.Caption>
-      <Input {...props} hasError={hasError} />
-      {hasError && <S.ErrorLabel appearance="helperText">{error}</S.ErrorLabel>}
+      <Input {...props} hasError={!!error} />
+      {error && <S.ErrorLabel appearance="helperText">{error}</S.ErrorLabel>}
     </S.Container>
   );
 }

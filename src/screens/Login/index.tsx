@@ -1,17 +1,30 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigation } from '@react-navigation/native';
 import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
 
 import { Button } from '@components/molecules/Button';
 import { Form } from '@components/organisms/Form';
 import { CommonScreen } from '@components/templates/DefaultPage';
 import * as S from './styles';
 
+import { schema } from './login.yup';
+
+type FormData = yup.InferType<typeof schema>;
+
 export function Login() {
   const { navigate } = useNavigation();
-  const { control, handleSubmit, formState } = useForm();
 
-  const onSubmit = (data: any) => {
-    console.log('teste', data);
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = (data: FormData) => {
+    console.tron.log('DATA', data);
   };
 
   const goToSingUp = () => {
@@ -23,18 +36,23 @@ export function Login() {
       <S.ContainerForm>
         <Form
           caption="E-mail"
-          name="name"
+          name="email"
           control={control}
-          formState={formState}
           placeholder="seu@email.com"
+          autoCapitalize="none"
+          autoComplete="email"
+          keyboardType="email-address"
+          error={errors.email?.message}
         />
         <Form
           caption="Senha"
-          name="email"
+          name="password"
           control={control}
-          formState={formState}
           placeholder="******"
-          error="teste"
+          autoCorrect={false}
+          autoCapitalize="none"
+          autoComplete="off"
+          error={errors.password?.message}
         />
         <Button title="Entrar" onPress={handleSubmit(onSubmit)} />
         <S.HelperText>Não possui conta em aca.so?</S.HelperText>

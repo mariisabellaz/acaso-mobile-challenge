@@ -10,24 +10,12 @@ type CommonInputProps = {
   placeholder: string;
   error?: string;
   control: any;
-  formState: any;
-  required?: boolean;
 };
 
 type FormProps = Partial<CommonInputProps> & TextInputProps;
 
-export const Form = ({
-  caption,
-  name,
-  control,
-  required = true,
-  placeholder,
-  formState,
-  error,
-  ...rest
-}: FormProps) => {
-  const hasError = formState.errors[name] || formState.isSubmitted;
-
+export const Form = ({ caption, name, control, placeholder, error, ...rest }: FormProps) => {
+  console.tron.log('ERROR', error);
   return (
     <Controller
       control={control}
@@ -38,7 +26,6 @@ export const Form = ({
           value={value}
           placeholder={placeholder}
           caption={caption}
-          // hasError={hasError}
           error={error}
           {...rest}
         />
