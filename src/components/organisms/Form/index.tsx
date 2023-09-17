@@ -26,6 +26,7 @@ export const Form = ({ caption, name, control, placeholder, error, ...rest }: Fo
           placeholder={placeholder}
           caption={caption}
           error={error}
+          isPassword={name === 'password' || name === 'confirm_password'}
           {...rest}
         />
       )}
