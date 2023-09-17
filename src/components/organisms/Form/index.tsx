@@ -1,9 +1,10 @@
 import React from 'react';
 import { Controller } from 'react-hook-form';
+import { TextInputProps } from 'react-native';
 
 import { CommonInput } from '@components/molecules/CommonInput';
 
-type FormProps = {
+type CommonInputProps = {
   caption: string;
   name: any;
   placeholder: string;
@@ -13,6 +14,8 @@ type FormProps = {
   required?: boolean;
 };
 
+type FormProps = Partial<CommonInputProps> & TextInputProps;
+
 export const Form = ({
   caption,
   name,
@@ -21,6 +24,7 @@ export const Form = ({
   placeholder,
   formState,
   error,
+  ...rest
 }: FormProps) => {
   const hasError = formState.errors[name] || formState.isSubmitted;
 
@@ -34,12 +38,12 @@ export const Form = ({
           value={value}
           placeholder={placeholder}
           caption={caption}
-          hasError={hasError}
+          // hasError={hasError}
           error={error}
+          {...rest}
         />
       )}
       name={name}
-      rules={{ required }}
     />
   );
 };

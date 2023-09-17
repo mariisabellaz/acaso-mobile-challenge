@@ -10,7 +10,7 @@ export const Container = styled(TextInput)<CustomTextInputProps>`
   height: 50px;
 
   ${({ theme }) => css`
-    padding: ${theme.SPACING.SM}px;
+    padding: 0 ${theme.SPACING.SM}px;
     border-radius: ${theme.BORDER.RADIUS.INPUT}px;
     background-color: ${theme.COLORS.BACKGROUND.INPUT};
 

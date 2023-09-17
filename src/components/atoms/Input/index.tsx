@@ -7,5 +7,6 @@ type CommonInputProps = Partial<S.CustomTextInputProps> & TextInputProps & { tes
 
 export function Input({ hasError, ...rest }: CommonInputProps) {
   const { COLORS } = useTheme();
+
   return <S.Container hasError={hasError} placeholderTextColor={COLORS.TEXT.PRIMARY} {...rest} />;
 }
