@@ -9,6 +9,14 @@ type ThumbnailImageProps = Partial<S.CustomThumbnailProps> & {
 
 export function Thumbnail({ appearance = 'default', imageSource }: ThumbnailImageProps) {
   if (typeof imageSource === 'string') {
-    return <S.Avatar source={{ uri: imageSource }} appearance={appearance} />;
+    return (
+      <S.Avatar
+        source={{ uri: imageSource }}
+        appearance={appearance}
+        accessible={true}
+        accessibilityRole="image"
+        accessibilityLabel="Avatar"
+      />
+    );
   }
 }

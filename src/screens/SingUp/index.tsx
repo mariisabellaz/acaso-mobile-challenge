@@ -77,8 +77,17 @@ export function SingUp() {
             autoComplete="off"
             error={errors?.confirm_password?.message}
           />
-          <Button title="Criar conta em aca.so" onPress={handleSubmit(onSubmit)} />
-          <Button title="Voltar ao login" type="secondary" onPress={goBack} />
+          <Button
+            label="Criar conta em aca.so"
+            onPress={handleSubmit(onSubmit)}
+            accessibilityHint="Cria uma conta nova e navega para a próxima tela"
+          />
+          <Button
+            label="Voltar ao login"
+            type="secondary"
+            onPress={goBack}
+            accessibilityHint="Volta para a tela de login"
+          />
         </S.ContainerForm>
       </CommonScreen.Heading>
     </ScrollView>

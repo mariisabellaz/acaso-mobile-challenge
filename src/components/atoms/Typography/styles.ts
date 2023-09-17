@@ -1,3 +1,4 @@
+import { Text } from 'react-native';
 import { FlattenInterpolation, css } from 'styled-components';
 import styled, { DefaultTheme, ThemeProps } from 'styled-components/native';
 
@@ -16,7 +17,6 @@ type AppearanceType =
 export type CustomTextProps = {
   appearance: AppearanceType;
   alignment?: 'center' | 'left' | 'right';
-  hyperlink?: boolean;
 };
 
 const styles: {
@@ -94,8 +94,7 @@ const styles: {
   `,
 };
 
-export const Label = styled.Text<CustomTextProps>`
+export const Label = styled(Text)<CustomTextProps>`
   ${({ appearance }) => styles[appearance]}
   text-align: ${({ alignment }) => alignment ?? 'left'};
-  text-decoration-line: ${({ hyperlink }) => (hyperlink ? 'underline' : 'none')};
 `;

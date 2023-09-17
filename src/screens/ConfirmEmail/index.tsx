@@ -47,13 +47,18 @@ export function ConfirmEmail() {
           error={errors?.confirmation_code?.message}
         />
 
-        <Button title="Confirmar e-mail" onPress={handleSubmit(onSubmit)} />
-        <S.HelperText>Não recebeu o código?</S.HelperText>
         <Button
-          title={isCounting ? `Aguarde ${formattedTime} para reenviar...` : 'Reenviar código'}
+          label="Confirmar e-mail"
+          onPress={handleSubmit(onSubmit)}
+          accessibilityHint="Confirma o e-mail e navega para a próxima tela"
+        />
+        <S.HelperText label="Não recebeu o código?" />
+        <Button
+          label={isCounting ? `Aguarde ${formattedTime} para reenviar...` : 'Reenviar código'}
           type="secondary"
           onPress={startCountdown}
           disabled={isCounting}
+          accessibilityHint="Reenvia código por e-mail"
         />
       </S.ContainerForm>
     </CommonScreen.Heading>

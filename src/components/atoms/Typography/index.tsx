@@ -1,16 +1,16 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
+import { TextProps } from 'react-native';
 
 import * as S from './styles';
 
-type TypographyProps = Partial<S.CustomTextProps> & PropsWithChildren & { testID?: string };
+type TypographyProps = Partial<S.CustomTextProps> & TextProps & { testID?: string; label: string };
 
 export const Typography: React.FC<TypographyProps> = ({
-  children,
+  label,
   appearance = 'paragraph',
-  hyperlink,
   ...props
 }) => (
-  <S.Label appearance={appearance} hyperlink={hyperlink} {...props}>
-    {children}
+  <S.Label appearance={appearance} accessible={true} accessibilityRole="text" {...props}>
+    {label}
   </S.Label>
 );

@@ -14,23 +14,25 @@ type AppearanceType =
   | 'button'
   | 'helperText';
 
-interface ScreenTypographyProps {
-  label?: string;
+type ScreenTypographyProps = {
+  label: string;
   appearance?: AppearanceType;
-}
+};
+
+type ScreenBackgroundProps = {
+  appearance?: AppearanceType;
+};
 
 const Page = ({ children }: PropsWithChildren) => <S.SafeAreaView>{children}</S.SafeAreaView>;
 
-const ScreenImageBackground: React.FC<PropsWithChildren & ScreenTypographyProps> = ({
+const ScreenImageBackground: React.FC<PropsWithChildren & ScreenBackgroundProps> = ({
   children,
 }) => <S.SafeAreaViewDark>{children}</S.SafeAreaViewDark>;
 
 const ScreenHeader: React.FC<PropsWithChildren & ScreenTypographyProps> = ({ children, label }) => (
   <S.SafeAreaView>
     <Header />
-    <S.Title appearance="title" alignment="center">
-      {label}
-    </S.Title>
+    <S.Title appearance="title" alignment="center" label={label} />
     {children}
   </S.SafeAreaView>
 );
@@ -41,9 +43,7 @@ const ScreenText: React.FC<PropsWithChildren & ScreenTypographyProps> = ({
   label,
 }) => (
   <S.SafeAreaView>
-    <S.Label appearance={appearance} alignment="center">
-      {label}
-    </S.Label>
+    <S.Label appearance={appearance} alignment="center" label={label} />
     {children}
   </S.SafeAreaView>
 );
@@ -54,9 +54,7 @@ const ScreenHeading: React.FC<PropsWithChildren & ScreenTypographyProps> = ({
 }) => (
   <S.SafeAreaView>
     <Header />
-    <S.Heading appearance="heading" alignment="center">
-      {label}
-    </S.Heading>
+    <S.Heading appearance="heading" alignment="center" label={label} />
     {children}
   </S.SafeAreaView>
 );

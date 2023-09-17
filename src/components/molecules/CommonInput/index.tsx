@@ -14,9 +14,9 @@ type CommonInputProps = Partial<CustomProps> & TextInputProps;
 export function CommonInput({ caption, error, isPassword, ...props }: CommonInputProps) {
   return (
     <S.Container>
-      <S.Caption appearance="caption">{caption}</S.Caption>
+      <S.Caption appearance="caption" nativeID="formLabel" label={caption} />
       <Input {...props} hasError={!!error} isPassword={isPassword} />
-      {error && <S.ErrorLabel appearance="helperText">{error}</S.ErrorLabel>}
+      {error && <S.ErrorLabel appearance="helperText" label={error} />}
     </S.Container>
   );
 }

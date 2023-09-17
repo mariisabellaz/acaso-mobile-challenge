@@ -1,15 +1,19 @@
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import * as S from './styles';
-
 import logoImg from '@assets/img/logo.png';
+import * as S from './styles';
 
 export function Header() {
   const insets = useSafeAreaInsets();
 
   return (
-    <S.Container top={insets}>
-      <S.Logo source={logoImg} />
+    <S.Container top={insets} accessible={true} accessibilityRole="header">
+      <S.Logo
+        source={logoImg}
+        accessible={true}
+        accessibilityRole="image"
+        accessibilityLabel="Logo"
+      />
     </S.Container>
   );
 }

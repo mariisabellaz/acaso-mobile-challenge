@@ -14,12 +14,28 @@ type Props = {
 
 export function PickerImage({ imageSource, onPressHiperlink, onPressChangePhoto, onPress }: Props) {
   const continueButtonText = imageSource ? 'Continuar' : 'Inserir foto';
+  const continueAccessibilityHint = imageSource
+    ? 'Navega para a tela de perfil'
+    : 'Inserir uma foto de usuário';
 
   const renderComponent = () => {
     if (imageSource) {
-      return <Button title="Trocar foto" onPress={onPressChangePhoto} type="secondary" />;
+      return (
+        <Button
+          label="Trocar foto"
+          onPress={onPressChangePhoto}
+          type="secondary"
+          accessibilityHint="Troca a foto do usuário"
+        />
+      );
     }
-    return <Hiperlink label="Entrar sem foto" onPress={onPressHiperlink} />;
+    return (
+      <Hiperlink
+        label="Entrar sem foto"
+        onPress={onPressHiperlink}
+        accessibilityHint="Navega para a tela de perfil sem foto do usuário"
+      />
+    );
   };
 
   return (
@@ -32,7 +48,11 @@ export function PickerImage({ imageSource, onPressHiperlink, onPressChangePhoto,
       </S.ContainerAvatar>
 
       <S.ContainerButton>
-        <Button title={continueButtonText} onPress={imageSource ? onPress : onPressChangePhoto} />
+        <Button
+          label={continueButtonText}
+          onPress={imageSource ? onPress : onPressChangePhoto}
+          accessibilityHint={continueAccessibilityHint}
+        />
         {renderComponent()}
       </S.ContainerButton>
     </S.Container>

@@ -54,9 +54,18 @@ export function Login() {
           autoComplete="off"
           error={errors?.password?.message}
         />
-        <Button title="Entrar" onPress={handleSubmit(onSubmit)} />
-        <S.HelperText>Não possui conta em aca.so?</S.HelperText>
-        <Button title="Criar uma conta" type="secondary" onPress={goToSingUp} />
+        <Button
+          label="Entrar"
+          onPress={handleSubmit(onSubmit)}
+          accessibilityHint="Faz login e navega para a próxima tela"
+        />
+        <S.HelperText label="Não possui conta em aca.so?" />
+        <Button
+          label="Criar uma conta"
+          type="secondary"
+          onPress={goToSingUp}
+          accessibilityHint="Navega para a tela de criar cadastro"
+        />
       </S.ContainerForm>
     </CommonScreen.Heading>
   );
