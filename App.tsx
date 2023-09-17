@@ -12,6 +12,7 @@ import theme from './src/theme';
 import { Loading } from '@components/atoms/Loading';
 
 import { Routes } from './src/routes';
+import './src/utils/config/reactotron';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
