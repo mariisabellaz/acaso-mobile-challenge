@@ -12,7 +12,8 @@ export default {
   },
   FONTFAMILY: {
     REGULAR: 'Raleway_400Regular',
-    ITALIC: 'Raleway_700Bold_Italic',
+    ITALIC: 'Raleway_400Regular_Italic',
+    ITALIC_BOLD: 'Raleway_700Bold_Italic',
     MEDIUM: 'Raleway_500Medium',
     BOLD: 'Raleway_700Bold',
   },

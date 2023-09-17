@@ -1,21 +1,23 @@
 import { useCallback, useState } from 'react';
 
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';
 
 import img from '@assets/img/img.png';
 import { Typography } from '@components/atoms/Typography';
 import { Button } from '@components/molecules/Button';
 import { CardProfile } from '@components/organisms/CardProfile';
 import { CommonScreen } from '@components/templates/DefaultPage';
+import * as S from './styles';
 
 export function Profile() {
   const [isLoading, setIsLoading] = useState(true);
-  const [image, setImage] = useState<boolean>(false);
 
-  const { navigate } = useNavigation();
+  const name = 'João';
+  const lastName = 'Carlos';
+  const screenDuration = '42 minutos';
 
   function handleNewGroup() {
-    navigation.navigate('new');
+    console.tron.log('clicou');
   }
 
   useFocusEffect(
@@ -27,11 +29,20 @@ export function Profile() {
   return (
     <CommonScreen.ImageBackground>
       <CardProfile type="image" imageSource={img} />
-
-      <Button title="Sair de aca.so" />
-      <Typography>
-        Ativo há pelo menos <Typography appearance="button">42 minutos</Typography>
+      <Typography appearance="display_bold" alignment="center">
+        {name}
       </Typography>
+
+      <Typography appearance="display" alignment="center">
+        {lastName?.toUpperCase()}
+      </Typography>
+
+      <S.Container>
+        <Typography>Ativo há pelo menos </Typography>
+        <Typography appearance="button">{screenDuration}</Typography>
+      </S.Container>
+
+      <Button title="Sair de aca.so" appearance="small" />
     </CommonScreen.ImageBackground>
   );
 }

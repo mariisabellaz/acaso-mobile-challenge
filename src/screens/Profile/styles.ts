@@ -1,12 +1,6 @@
 import styled from 'styled-components/native';
 
-export const ContainerAvatar = styled.View`
-  flex: 2;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const ContainerButton = styled.View`
-  flex: 1;
-  align-items: center;
+export const Container = styled.View`
+  flex-direction: row;
+  margin: ${({ theme }) => theme.SPACING.SM}px 0 ${({ theme }) => theme.SPACING.XXL}px;
 `;

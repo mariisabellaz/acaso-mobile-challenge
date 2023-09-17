@@ -1,5 +1,6 @@
 import {
   Raleway_400Regular,
+  Raleway_400Regular_Italic,
   Raleway_500Medium,
   Raleway_700Bold,
   Raleway_700Bold_Italic,
@@ -19,6 +20,7 @@ export default function App() {
     Raleway_400Regular,
     Raleway_500Medium,
     Raleway_700Bold,
+    Raleway_400Regular_Italic,
     Raleway_700Bold_Italic,
   });
 

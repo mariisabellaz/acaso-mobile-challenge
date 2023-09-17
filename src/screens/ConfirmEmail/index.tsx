@@ -51,7 +51,7 @@ export function ConfirmEmail() {
         <S.HelperText>Não recebeu o código?</S.HelperText>
         <Button
           title={isCounting ? `Aguarde ${formattedTime} para reenviar...` : 'Reenviar código'}
-          type="SECONDARY"
+          type="secondary"
           onPress={startCountdown}
           disabled={isCounting}
         />

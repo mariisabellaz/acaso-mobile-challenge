@@ -16,8 +16,8 @@ export function PickerImage({ imageSource, onPressHiperlink, onPressChangePhoto,
   const continueButtonText = imageSource ? 'Continuar' : 'Inserir foto';
 
   const renderComponent = () => {
-    if (imageSource !== null) {
-      return <Button title="Trocar foto" onPress={onPressChangePhoto} appearance="secondary" />;
+    if (imageSource) {
+      return <Button title="Trocar foto" onPress={onPressChangePhoto} type="secondary" />;
     }
     return <Hiperlink label="Entrar sem foto" onPress={onPressHiperlink} />;
   };

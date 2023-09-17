@@ -19,9 +19,13 @@ const ScreenLinear: React.FC<PropsWithChildren & ScreenProps> = ({ imageSource, 
   </LinearCircle>
 );
 
-const ScreenDefault: React.FC<PropsWithChildren & ScreenProps> = ({ imageSource }) => (
+const ScreenDefault: React.FC<PropsWithChildren & ScreenProps> = ({ imageSource, type }) => (
   <Circle>
-    <Thumbnail imageSource={imageSource} appearance="small" />
+    {type === 'image' ? (
+      <Thumbnail imageSource={imageSource} appearance="small" />
+    ) : (
+      <UserIcon appearance="small" />
+    )}
   </Circle>
 );
 

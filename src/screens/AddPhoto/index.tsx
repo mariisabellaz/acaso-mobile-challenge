@@ -14,7 +14,7 @@ export function AddPhoto() {
   };
 
   const savePhoto = () => {
-    // navigation.navigate('profile');
+    navigate('profile');
     console.tron.log('salvar foto');
   };
 

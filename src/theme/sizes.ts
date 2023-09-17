@@ -8,6 +8,7 @@ export default {
     MD: normalize(24),
     LG: normalize(36),
     XL: normalize(40),
+    XXL: normalize(52),
   },
   BORDER: {
     INPUT: normalize(2),

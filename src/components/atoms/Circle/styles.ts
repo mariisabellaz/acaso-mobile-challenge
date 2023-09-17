@@ -1,10 +1,10 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  width: 160px;
-  height: 160px;
+  width: 162px;
+  height: 162px;
 
-  border-radius: 80px;
+  border-radius: 81px;
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND.LIGHT};
 
   justify-content: center;

@@ -56,7 +56,7 @@ export function Login() {
         />
         <Button title="Entrar" onPress={handleSubmit(onSubmit)} />
         <S.HelperText>Não possui conta em aca.so?</S.HelperText>
-        <Button title="Criar uma conta" type="SECONDARY" onPress={goToSingUp} />
+        <Button title="Criar uma conta" type="secondary" onPress={goToSingUp} />
       </S.ContainerForm>
     </CommonScreen.Heading>
   );

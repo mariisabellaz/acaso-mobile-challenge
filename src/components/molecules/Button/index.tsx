@@ -1,18 +1,12 @@
 import { TouchableOpacityProps } from 'react-native';
-
 import * as S from './styles';
 
-type ButtonProps = TouchableOpacityProps & {
-  title: string;
-  appearance?: S.ButtonTypeStyleProps;
-};
+type ButtonProps = Partial<S.CustomButtonProps> & TouchableOpacityProps & { title: string };
 
-export function Button({ title, appearance = 'primary', ...rest }: ButtonProps) {
+export function Button({ type = 'primary', appearance = 'large', title, ...rest }: ButtonProps) {
   return (
-    <S.Container type={appearance} {...rest}>
-      <S.Label type={appearance} appearance="button" alignment="center">
-        {title}
-      </S.Label>
-    </S.Container>
+    <S.Containers appearance={appearance} type={type} {...rest}>
+      <S.Label type={type}>{title}</S.Label>
+    </S.Containers>
   );
 }

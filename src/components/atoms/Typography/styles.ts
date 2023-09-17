@@ -3,6 +3,7 @@ import styled, { DefaultTheme, ThemeProps } from 'styled-components/native';
 
 type AppearanceType =
   | 'display'
+  | 'display_bold'
   | 'heading'
   | 'caption'
   | 'paragraph'
@@ -26,6 +27,13 @@ const styles: {
       font-size: ${theme.FONTSIZE.XXL}px;
       color: ${theme.COLORS.TEXT.LIGHT};
       font-family: ${theme.FONTFAMILY.ITALIC};
+    `};
+  `,
+  display_bold: css`
+    ${({ theme }) => css`
+      font-size: ${theme.FONTSIZE.XXL}px;
+      color: ${theme.COLORS.TEXT.LIGHT};
+      font-family: ${theme.FONTFAMILY.ITALIC_BOLD};
     `};
   `,
   heading: css`
