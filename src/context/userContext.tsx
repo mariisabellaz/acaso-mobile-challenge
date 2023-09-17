@@ -1,48 +1,56 @@
 // import axios from 'axios';
-import React, { ReactNode, createContext, useContext, useEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import React, { ReactNode, createContext, useContext, useState } from 'react';
+import { ImageSourcePropType } from 'react-native';
+
+export interface UserData {
+  first_name: string;
+  last_name: string;
+  last_access_at: string;
+  profile_picture: ImageSourcePropType;
+}
 
 interface UserContextType {
-  userData: UserData | null;
+  userData: UserData;
   fetchUserData: () => Promise<void>;
+  savePhoto: () => Promise<void>;
+  isLoading: boolean;
 }
 
-interface UserData {
-  // Defina a estrutura de dados do usuário
-  id: string;
-  name: string;
-  email: string;
-  // ...
-}
 type ChildrenContextProps = { children: ReactNode };
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider = ({ children }: ChildrenContextProps) => {
-  const [userData, setUserData] = useState<UserData | null>(null);
+  const [userData, setUserData] = useState<UserData>({} as UserData);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { navigate } = useNavigation();
 
   const fetchUserData = async () => {
     try {
-      // Obtenha o token da AsyncStorage
-      // const userToken = await AsyncStorage.getItem('userToken');
-      //if (userToken) {
-      // Configure o token nas requisições Axios
-      //axios.defaults.headers.common['Authorization'] = `Bearer ${userToken}`;
-      // Substitua isso pelo seu código de chamada à API para obter os dados do usuário
-      // const response = await api.get('/user/profile');
-      // const userData = response.data;
-      //setUserData(userData);
-      //}
+      const DATA = {
+        first_name: 'Joao',
+        last_name: 'Carlos',
+        last_access_at: '2023-09-17T21:24:27.717Z',
+        profile_picture:
+          'https://fastly.picsum.photos/id/478/200/200.jpg?hmac=YfKBYcZHT991lmrKfB0pYNaztmUvQecXbVrc5V4mj8E',
+      };
+      setUserData(DATA);
     } catch (error) {
       // Handle errors
     }
   };
 
-  useEffect(() => {
-    fetchUserData();
-  }, []);
+  const savePhoto = async () => {
+    //CRIAR CONTEXTO DE SALVAR FOTO
+    navigate('profile');
+  };
 
   return (
-    <UserContext.Provider value={{ userData, fetchUserData }}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{ userData, fetchUserData, savePhoto, isLoading }}>
+      {children}
+    </UserContext.Provider>
   );
 };
 

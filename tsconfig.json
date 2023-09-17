@@ -13,8 +13,8 @@
       "@screens/*": [
         "./src/screens/*"
       ],
-      "@storage/*": [
-        "src/services/libs/*"
+      "@services/*": [
+        "src/services/*"
       ],
       "@theme/*": [
         "./src/theme/*"
@@ -24,9 +24,6 @@
       ],
       "@hooks/*": [
         "./src/hooks/*"
-      ],
-      "@models/*": [
-        "./src/models/*"
       ],
       "@context/*": [
         "./src/context/*"

@@ -1,5 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 
+import { useUserData } from '@context/userContext';
 import { useImagePicker } from '@hooks/useImagePicker';
 
 import { PickerImage } from '@components/organisms/PickerImage';
@@ -8,14 +9,15 @@ import { CommonScreen } from '@components/templates/DefaultPage';
 export function AddPhoto() {
   const { navigate } = useNavigation();
   const { imageUri, pickImage } = useImagePicker();
+  const { savePhoto } = useUserData();
 
   const onPressHiperlink = () => {
     navigate('profile');
   };
 
-  const savePhoto = () => {
-    navigate('profile');
-    console.tron.log('salvar foto');
+  const onContinue = async () => {
+    //CRIAR CONTEXTO DE SALVAR FOTO
+    await savePhoto();
   };
 
   return (

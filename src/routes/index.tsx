@@ -5,8 +5,8 @@ import { useTheme } from 'styled-components/native';
 import { AuthProvider } from '@context/authContext';
 import { UserProvider } from '@context/userContext';
 
-import { AuthRoutes } from './auth.routes';
-// import { AppRoutes } from './app.routes';
+// import { AuthRoutes } from './auth.routes';
+import { AppRoutes } from './app.routes';
 
 export function Routes() {
   const { COLORS } = useTheme();
@@ -16,7 +16,7 @@ export function Routes() {
       <NavigationContainer>
         <AuthProvider>
           <UserProvider>
-            <AuthRoutes />
+            <AppRoutes />
           </UserProvider>
         </AuthProvider>
       </NavigationContainer>

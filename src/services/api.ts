@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { BASE_URL } from '@utils/config/consts';
+const BASE_URL = 'https://api.staging.aca.so/';
 
 const api = axios.create({
   baseURL: BASE_URL,
