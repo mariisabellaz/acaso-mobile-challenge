@@ -15,7 +15,6 @@ type CommonInputProps = {
 type FormProps = Partial<CommonInputProps> & TextInputProps;
 
 export const Form = ({ caption, name, control, placeholder, error, ...rest }: FormProps) => {
-  console.tron.log('ERROR', error);
   return (
     <Controller
       control={control}

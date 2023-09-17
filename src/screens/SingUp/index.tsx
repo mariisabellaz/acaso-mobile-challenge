@@ -2,8 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigation } from '@react-navigation/native';
 import { useForm } from 'react-hook-form';
 import { ScrollView } from 'react-native';
-
-import { SingUpModel } from '@models/Authentication';
+import * as yup from 'yup';
 
 import { Button } from '@components/molecules/Button';
 import { Form } from '@components/organisms/Form';
@@ -12,16 +11,21 @@ import * as S from './styles';
 
 import { schema } from './signup.yup';
 
+type FormData = yup.InferType<typeof schema>;
+
 export function SingUp() {
   const { navigate, goBack } = useNavigation();
-
-  const { control, handleSubmit, formState, errors } = useForm<SingUpModel>({
-    resolver: yupResolver(schema) as any,
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: SingUpModel) => {
-    console.log('DATA ==>', data);
-    // navigate('confirmemail');
+  const onSubmit = (data: FormData) => {
+    console.tron.log('DATA ==>', data);
+    navigate('confirmemail');
   };
 
   return (
@@ -32,27 +36,24 @@ export function SingUp() {
             caption="E-mail*"
             name="email"
             control={control}
-            formState={formState}
             placeholder="seu@email.com"
-            error={errors?.email?.message}
             autoCapitalize="none"
             autoComplete="email"
             keyboardType="email-address"
+            error={errors?.email?.message}
           />
           <Form
             caption="Primeiro nome*"
             name="first_name"
             control={control}
-            formState={formState}
             placeholder="Primeiro nome"
-            error={errors?.first_name?.message}
             autoComplete="username"
+            error={errors?.first_name?.message}
           />
           <Form
             caption="Último nome*"
             name="last_name"
             control={control}
-            formState={formState}
             placeholder="Último nome"
             error={errors?.last_name?.message}
           />
@@ -60,23 +61,21 @@ export function SingUp() {
             caption="Senha"
             name="password"
             control={control}
-            formState={formState}
             placeholder="******"
-            error={errors?.password?.message}
             autoCorrect={false}
             autoCapitalize="none"
             autoComplete="off"
+            error={errors?.password?.message}
           />
           <Form
             caption="Confirme sua senha*"
             name="confirm_password"
             control={control}
-            formState={formState}
             placeholder="******"
-            error={errors?.confirm_password?.message}
             autoCorrect={false}
             autoCapitalize="none"
             autoComplete="off"
+            error={errors?.confirm_password?.message}
           />
           <Button title="Criar conta em aca.so" onPress={handleSubmit(onSubmit)} />
           <Button title="Voltar ao login" type="SECONDARY" onPress={goBack} />

@@ -42,7 +42,7 @@ export function Login() {
           autoCapitalize="none"
           autoComplete="email"
           keyboardType="email-address"
-          error={errors.email?.message}
+          error={errors?.email?.message}
         />
         <Form
           caption="Senha"
@@ -52,7 +52,7 @@ export function Login() {
           autoCorrect={false}
           autoCapitalize="none"
           autoComplete="off"
-          error={errors.password?.message}
+          error={errors?.password?.message}
         />
         <Button title="Entrar" onPress={handleSubmit(onSubmit)} />
         <S.HelperText>Não possui conta em aca.so?</S.HelperText>

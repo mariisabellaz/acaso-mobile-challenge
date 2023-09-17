@@ -1,6 +1,8 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
 
 import { useFormatTime } from '@hooks/useFormatTime';
 import { useRefreshCode } from '@hooks/useRefreshCode';
@@ -10,10 +12,20 @@ import { Form } from '@components/organisms/Form';
 import { CommonScreen } from '@components/templates/DefaultPage';
 import * as S from './styles';
 
+import { schema } from './confirmEmail.yup';
+
+type FormData = yup.InferType<typeof schema>;
+
 export function ConfirmEmail() {
   const { navigate } = useNavigation();
-  const { control, handleSubmit, formState } = useForm();
   const { countdown, isCounting, startCountdown } = useRefreshCode();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: yupResolver(schema),
+  });
 
   const formattedTime = useFormatTime(countdown);
 
@@ -26,13 +38,17 @@ export function ConfirmEmail() {
       <S.ContainerForm>
         <Form
           caption="Código"
-          name="code"
+          name="confirmation_code"
           control={control}
-          formState={formState}
           placeholder="Digite o código recebido..."
+          autoCorrect={false}
+          autoCapitalize="none"
+          autoComplete="off"
+          error={errors?.confirmation_code?.message}
         />
 
         <Button title="Confirmar e-mail" onPress={handleSubmit(onSubmit)} />
+        <S.HelperText>Não recebeu o código?</S.HelperText>
         <Button
           title={isCounting ? `Aguarde ${formattedTime} para reenviar...` : 'Reenviar código'}
           type="SECONDARY"
