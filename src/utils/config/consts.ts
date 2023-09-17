@@ -1,3 +1,2 @@
-export const ASSISTANCE_PHONE = '08005550001';
-export const CREDIT_CARD_ASSISTANCE_URL =
-  'https://www.itau.com.br/atendimento-itau/para-voce/envie-sua-mensagem/';
+export const ASSBASEISTANCE_PHONE = '08005550001';
+export const BASE_URL = 'https://api.staging.aca.so/';

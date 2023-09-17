@@ -14,7 +14,7 @@
         "./src/screens/*"
       ],
       "@storage/*": [
-        "src/libs/*"
+        "src/services/libs/*"
       ],
       "@theme/*": [
         "./src/theme/*"
