@@ -4,6 +4,7 @@ export default {
       PRIMARY: '#030446',
       DARK: '#000000',
       LIGHT: '#FFFFFF',
+      INPUT: '#1E1F2F',
     },
     BUTTON: {
       PRIMARY: '#FFFFFF',

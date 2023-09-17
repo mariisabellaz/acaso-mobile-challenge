@@ -2,7 +2,7 @@ import { TextInput } from 'react-native';
 import styled, { css } from 'styled-components/native';
 
 export type CustomTextInputProps = {
-  border?: boolean;
+  hasError?: boolean;
 };
 
 export const Container = styled(TextInput)<CustomTextInputProps>`
@@ -12,6 +12,7 @@ export const Container = styled(TextInput)<CustomTextInputProps>`
   ${({ theme }) => css`
     padding: ${theme.SPACING.SM}px;
     border-radius: ${theme.BORDER.RADIUS.INPUT}px;
+    background-color: ${theme.COLORS.BACKGROUND.INPUT};
 
     text-align: left;
     font-size: ${theme.FONTSIZE.SM}px;
@@ -19,8 +20,8 @@ export const Container = styled(TextInput)<CustomTextInputProps>`
     color: ${theme.COLORS.TEXT.PRIMARY};
   `}
 
-  ${({ theme, border }) =>
-    border &&
+  ${({ theme, hasError }) =>
+    hasError &&
     css`
       border-color: ${theme.COLORS.TEXT.ERROR};
       border-width: ${theme.BORDER.INPUT}px;

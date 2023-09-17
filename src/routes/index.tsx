@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from 'styled-components/native';
-import { AppRoutes } from './app.routes';
+import { AppRoutes } from './auth.routes';
 
 export function Routes() {
   const { COLORS } = useTheme();

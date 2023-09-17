@@ -48,8 +48,22 @@ const ScreenText: React.FC<PropsWithChildren & ScreenTypographyProps> = ({
   </S.SafeAreaView>
 );
 
+const ScreenHeading: React.FC<PropsWithChildren & ScreenTypographyProps> = ({
+  children,
+  label,
+}) => (
+  <S.SafeAreaView>
+    <Header />
+    <S.Heading appearance="heading" alignment="center">
+      {label}
+    </S.Heading>
+    {children}
+  </S.SafeAreaView>
+);
+
 Page.Header = ScreenHeader;
 Page.Text = ScreenText;
+Page.Heading = ScreenHeading;
 Page.ImageBackground = ScreenImageBackground;
 
 export default Page;

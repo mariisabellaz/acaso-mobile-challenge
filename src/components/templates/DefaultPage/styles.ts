@@ -33,3 +33,7 @@ export const Label = styled(Typography)`
 export const Title = styled(Typography)`
   padding: ${({ theme }) => theme.SPACING.LG}px 0;
 `;
+
+export const Heading = styled(Typography)`
+  padding: ${({ theme }) => theme.SPACING.XL}px 0;
+`;

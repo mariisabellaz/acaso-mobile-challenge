@@ -3,6 +3,8 @@ export declare global {
     interface RootParamList {
       addPhoto: undefined;
       profile: undefined;
+      login: undefined;
+      singup: undefined;
     }
   }
 }
