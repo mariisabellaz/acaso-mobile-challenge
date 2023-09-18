@@ -4,20 +4,20 @@ import { useTheme } from 'styled-components/native';
 
 import { AuthProvider } from '@context/authContext';
 import { UserProvider } from '@context/userContext';
+import { useStorage } from '@hooks/useStorage';
 
-//import { AuthRoutes } from './auth.routes';
 import { AppRoutes } from './app.routes';
+import { AuthRoutes } from './auth.routes';
 
 export function Routes() {
   const { COLORS } = useTheme();
+  const { userData } = useStorage();
 
   return (
     <View style={{ flex: 1, backgroundColor: COLORS.BACKGROUND.PRIMARY }}>
       <NavigationContainer>
         <AuthProvider>
-          <UserProvider>
-            <AppRoutes />
-          </UserProvider>
+          <UserProvider>{userData ? <AppRoutes /> : <AuthRoutes />}</UserProvider>
         </AuthProvider>
       </NavigationContainer>
     </View>
