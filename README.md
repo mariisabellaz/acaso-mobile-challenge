@@ -8,6 +8,7 @@ Mobile Challenge Aca.so
 
 ## Project Structure
 
+```
 📦src
 ┣ 📂@types: All types here (navigation, png, svg styled)
 ┣ 📂assets: All assets here (jpg, png, svg)
@@ -21,19 +22,27 @@ Mobile Challenge Aca.so
 ┃ ┣ 📂config: Reactotron configs
 ┃
 
+```
+
 ## How to run
 
 # iOS
 
+```bash
 $ cd solides-app-colaborador-react-native
 $ yarn
 $ yarn ios
 
+```
+
 # Android
 
+```bash
 $ cd solides-app-colaborador-react-native
 $ yarn
 $ yarn android
+
+```
 
 ## 📝 Licença
 
