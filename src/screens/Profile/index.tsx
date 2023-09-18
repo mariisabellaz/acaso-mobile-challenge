@@ -1,7 +1,8 @@
 import { useFocusEffect } from '@react-navigation/native';
 import { useCallback } from 'react';
 
-import { useUserData } from '@context/userContext';
+import { useAuth } from '@context/authContext';
+import { useStorage } from '@hooks/useStorage';
 import { formattedDateString } from '@utils/formattedDateString';
 
 import { LoadIndicator } from '@components/atoms/Loading/styles';
@@ -12,14 +13,18 @@ import { CommonScreen } from '@components/templates/DefaultPage';
 import * as S from './styles';
 
 export function Profile() {
-  const { fetchUserData, isLoading, userData } = useUserData();
+  const { signOut } = useAuth();
+  const { isLoading, userData } = useStorage();
 
   useFocusEffect(
     useCallback(() => {
-      fetchUserData();
-      console.tron.log(userData);
+      //
     }, [])
   );
+
+  const onSignOut = () => {
+    signOut();
+  };
 
   const render = () => {
     return (
@@ -38,7 +43,12 @@ export function Profile() {
             <Typography label={`Ativo `} />
             <Typography appearance="button" label={formattedDateString(userData?.last_access_at)} />
           </S.Row>
-          <Button label="Sair de aca.so" appearance="small" accessibilityHint="Faz logoff" />
+          <Button
+            label="Sair de aca.so"
+            appearance="small"
+            accessibilityHint="Faz logoff"
+            onPress={onSignOut}
+          />
         </S.Container>
       </>
     );

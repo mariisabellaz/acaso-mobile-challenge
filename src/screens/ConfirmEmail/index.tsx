@@ -1,6 +1,8 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
+
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useRoute } from '@react-navigation/native';
+
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
@@ -17,10 +19,16 @@ import { schema } from './confirmEmail.yup';
 
 type FormData = yup.InferType<typeof schema>;
 
+type RouteParams = {
+  email: string;
+};
+
 export function ConfirmEmail() {
-  const { navigate } = useNavigation();
+  const route = useRoute();
+  const { email } = route.params as RouteParams;
+
   const { countdown, isCounting, startCountdown } = useRefreshCode();
-  const { confirmCode, refreshCode } = useAuth();
+  const { confirmCode, resendConfirmationCode } = useAuth();
   const {
     control,
     handleSubmit,
@@ -32,12 +40,13 @@ export function ConfirmEmail() {
   const formattedTime = useFormatTime(countdown);
 
   const onSubmit = async (data: FormData) => {
-    await confirmCode(data);
+    const formDataWithEmail = { ...data, email };
+    await confirmCode(formDataWithEmail);
   };
 
-  const onRefreshCode = async () => {
+  const onResendConfirmationCode = async () => {
     startCountdown();
-    await refreshCode();
+    await resendConfirmationCode(email);
   };
 
   return (
@@ -63,7 +72,7 @@ export function ConfirmEmail() {
         <Button
           label={isCounting ? `Aguarde ${formattedTime} para reenviar...` : 'Reenviar código'}
           type="secondary"
-          onPress={onRefreshCode}
+          onPress={onResendConfirmationCode}
           disabled={isCounting}
           accessibilityHint="Reenvia código por e-mail"
         />

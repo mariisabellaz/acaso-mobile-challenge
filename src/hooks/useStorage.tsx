@@ -7,6 +7,7 @@ const STORAGE_KEY_USER = 'acaso:user';
 
 export const useStorage = () => {
   const [userData, setUserData] = useState<UserDataModel>({} as UserDataModel);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const saveUserData = async (userData: any) => {
     try {
@@ -31,9 +32,11 @@ export const useStorage = () => {
           });
         }
       }
+      setIsLoading(false);
     } catch (error) {
       // Tratar erros de remoção de dados aqui
       console.log('Erro ao ler os dados do usuário:', error);
+      setIsLoading(false);
     }
   };
 
@@ -51,5 +54,5 @@ export const useStorage = () => {
     }
   };
 
-  return { saveUserData, removeUserData, userData };
+  return { saveUserData, removeUserData, userData, isLoading };
 };

@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { CommonScreen } from '@components/templates/DefaultPage';
 import { useAuth } from '@context/authContext';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -16,6 +18,7 @@ type FormData = yup.InferType<typeof schema>;
 export function SingUp() {
   const { signUp } = useAuth();
   const { goBack } = useNavigation();
+
   const {
     control,
     handleSubmit,
