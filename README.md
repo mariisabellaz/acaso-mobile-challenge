@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Rocketseat Education" src="./src/assets/img/logo@3x.png" width="100px" />
+  <img alt="Rocketseat Education" src="./src/assets/img/logo@3x.png" width="150px" />
 </p>
 
 ## 💻 Projeto
