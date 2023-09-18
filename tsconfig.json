@@ -13,9 +13,6 @@
       "@screens/*": [
         "./src/screens/*"
       ],
-      "@services/*": [
-        "src/services/*"
-      ],
       "@theme/*": [
         "./src/theme/*"
       ],

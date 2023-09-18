@@ -21,7 +21,7 @@ type AuthContextType = {
   confirmCode: (confirmation_code: FormDataConfirmEmail) => Promise<void>;
   resendConfirmationCode: (email: string) => Promise<void>;
   signOut: () => Promise<void>;
-  saveUserData: () => Promise<void>;
+  saveUserData: (user: UserDataModel) => Promise<void>;
 };
 
 type ChildrenContextProps = { children: ReactNode };
@@ -137,7 +137,6 @@ export const AuthProvider = ({ children }: ChildrenContextProps) => {
         signUp,
         confirmCode,
         resendConfirmationCode,
-
         saveUserData,
       }}
     >

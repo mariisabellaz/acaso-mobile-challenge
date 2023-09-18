@@ -3,7 +3,7 @@ import { TextProps } from 'react-native';
 
 import * as S from './styles';
 
-type TypographyProps = Partial<S.CustomTextProps> & TextProps & { testID?: string; label: string };
+type TypographyProps = Partial<S.CustomTextProps> & TextProps & { label: string };
 
 export const Typography: React.FC<TypographyProps> = ({
   label,

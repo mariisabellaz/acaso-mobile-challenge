@@ -2,10 +2,7 @@ import { ImageSourcePropType } from 'react-native';
 
 import * as S from './styles';
 
-type ThumbnailImageProps = Partial<S.CustomThumbnailProps> & {
-  testID?: string;
-  imageSource?: ImageSourcePropType;
-};
+type ThumbnailImageProps = Partial<S.CustomThumbnailProps> & { imageSource?: ImageSourcePropType };
 
 export function Thumbnail({ appearance = 'default', imageSource }: ThumbnailImageProps) {
   if (typeof imageSource === 'string') {

@@ -4,8 +4,7 @@ import { useTheme } from 'styled-components';
 
 import * as S from './styles';
 
-type CommonInputProps = Partial<S.CustomTextInputProps> &
-  TextInputProps & { testID?: string; isPassword?: boolean };
+type CommonInputProps = Partial<S.CustomTextInputProps> & TextInputProps & { isPassword?: boolean };
 
 export function Input({ hasError, isPassword = false, ...rest }: CommonInputProps) {
   const [showPassword, setShowPassword] = useState<boolean>(true);
