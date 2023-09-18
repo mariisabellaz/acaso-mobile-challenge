@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
-
 import { useNavigation } from '@react-navigation/native';
+import React, { useEffect } from 'react';
 import { ImageSourcePropType } from 'react-native';
 
-import { useUserData } from '@context/userContext';
+import { useUser } from '@context/userContext';
 import { useImagePicker } from '@hooks/useImagePicker';
 
 import { PickerImage } from '@components/organisms/PickerImage';
@@ -12,7 +11,7 @@ import { CommonScreen } from '@components/templates/DefaultPage';
 export function AddPhoto() {
   const { navigate } = useNavigation();
   const { imageUri, pickImage } = useImagePicker();
-  const { savePhoto, loadUserData, userData } = useUserData();
+  const { savePhoto, fechUser, userData } = useUser();
 
   const onPressHiperlink = () => {
     navigate('profile');
@@ -31,7 +30,7 @@ export function AddPhoto() {
   };
 
   useEffect(() => {
-    loadUserData();
+    fechUser();
   }, []);
 
   return (
@@ -40,7 +39,7 @@ export function AddPhoto() {
         onPress={onContinue}
         onPressChangePhoto={onChangeImage}
         onPressHiperlink={onPressHiperlink}
-        imageSource={userData.profile_picture || imageUri}
+        // imageSource={userData.profile_picture || imageUri}
       />
     </CommonScreen.Heading>
   );

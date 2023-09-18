@@ -16,7 +16,7 @@ type FormData = yup.InferType<typeof schema>;
 
 export function Login() {
   const { navigate } = useNavigation();
-  const { signIn } = useAuth();
+  const { signIn, saveUserData } = useAuth();
 
   const {
     control,
