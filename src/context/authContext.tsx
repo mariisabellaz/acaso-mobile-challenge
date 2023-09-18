@@ -56,11 +56,11 @@ export const AuthProvider = ({ children }: ChildrenContextProps) => {
           saveUserData(formattedData);
           navigate('addphoto');
         } catch (error) {
-          console.log('load User Data aqui', error);
+          alert(error);
         }
       }
     } catch (error) {
-      console.log('login error:', error);
+      alert(error);
     }
   };
 
@@ -77,11 +77,11 @@ export const AuthProvider = ({ children }: ChildrenContextProps) => {
         navigate('confirmemail', { email });
       }
     } catch (error) {
-      console.log('register error:', error);
+      alert(error);
       if (error.response?.data?.message === 'Email registered but not confirmed') {
-        // Alert.alert('Atenção', 'E-mail já cadastrado porém não foi confirmado!');
+        alert('E-mail já cadastrado porém não foi confirmado!');
       } else {
-        //Alert.alert('Atenção',error.response?.data?.message || 'Ocorreu um erro ao fazer cadastro.!');
+        alert('Ocorreu um erro ao fazer cadastro.!');
       }
     }
   };
@@ -94,12 +94,10 @@ export const AuthProvider = ({ children }: ChildrenContextProps) => {
       });
 
       if (response.status === 204) {
-        console.log('confirmCode success:', response.data);
         navigate('login');
       }
     } catch (error) {
-      console.log('confirmCode error:', error);
-      // Alert.alert('Atenção', error.response?.data?.message ||'Ocorreu um erro ao confirmar o e-mail. Verifique o código e tente novamente.!');
+      alert('Ocorreu um erro ao confirmar o e-mail. Verifique o código e tente novamente.!');
     }
   };
 
@@ -108,11 +106,10 @@ export const AuthProvider = ({ children }: ChildrenContextProps) => {
       const response = await axios.post(`${BASE_URL}/auth/resend-confirmation-code`, { email });
 
       if (response.status === 200) {
-        console.log('resend Confirmation Code success:', response.data);
+        alert('E-mail enviado com sucesso');
       }
     } catch (error) {
-      console.log('resend Confirmation Code error:', error);
-      //Alert.alert('Atenção',error.response?.data?.message || 'Ocorreu ao reenviar código. tente novamente mais tarde.!');
+      alert(error);
     }
   };
 
@@ -120,7 +117,7 @@ export const AuthProvider = ({ children }: ChildrenContextProps) => {
     try {
       await AsyncStorage.setItem(STORAGE_KEY_USER, JSON.stringify(user));
     } catch (error) {
-      console.log('Erro ao salvar os dados do usuário:', error);
+      alert(error);
     }
   };
 

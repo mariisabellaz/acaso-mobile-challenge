@@ -1,5 +1,3 @@
-import 'react-native-gesture-handler';
-
 import {
   Raleway_400Regular,
   Raleway_400Regular_Italic,
@@ -8,7 +6,7 @@ import {
   Raleway_700Bold_Italic,
   useFonts,
 } from '@expo-google-fonts/raleway';
-import { StatusBar } from 'react-native';
+import { LogBox, StatusBar } from 'react-native';
 import { ThemeProvider } from 'styled-components/native';
 import theme from './src/theme';
 
@@ -16,6 +14,8 @@ import { Loading } from '@components/atoms/Loading';
 
 import { Routes } from './src/routes';
 import './src/utils/config/reactotron';
+
+LogBox.ignoreAllLogs();
 
 export default function App() {
   const [fontsLoaded] = useFonts({

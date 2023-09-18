@@ -38,7 +38,7 @@ export const UserProvider = ({ children }: ChildrenContextProps) => {
     const fileType = imageUri.toString().endsWith('.png') ? 'image/png' : 'image/jpeg';
 
     if (fileType === 'image/png') {
-      // Alert.alert('Atenção', 'Formato de imagem não aceito seleciona formato jpeg')
+      alert('Formato de imagem não aceito seleciona formato jpeg');
     } else {
       const { id, id_token } = userData;
 
@@ -58,12 +58,10 @@ export const UserProvider = ({ children }: ChildrenContextProps) => {
         });
 
         if (response.status === 200) {
-          console.log('savePhoto success:', response.data);
           navigate('profile');
         }
       } catch (error) {
-        console.log('savePhoto error:', error);
-        // Alert.alert('Atenção', 'Erro ao atualizar imagem tente novamente!');
+        alert(error);
       }
     }
   };
