@@ -5,7 +5,9 @@ export declare global {
       profile: undefined;
       login: undefined;
       singup: undefined;
-      confirmemail: undefined;
+      confirmemail: {
+        email: string;
+      };
     }
   }
 }

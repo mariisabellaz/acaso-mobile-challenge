@@ -1,7 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
-import React, { ReactNode, createContext, useContext, useEffect } from 'react';
+import React, { ReactNode, createContext, useContext } from 'react';
 import * as yup from 'yup';
+
+import { useStorage } from '@hooks/useStorage';
 
 import { schema as ConfirmEmailSchema } from '@screens/ConfirmEmail/confirmEmail.yup';
 import { schema as LoginSchema } from '@screens/Login/login.yup';
@@ -9,13 +11,13 @@ import { schema as SingUpSchema } from '@screens/SingUp/signup.yup';
 
 type FormDataLogin = yup.InferType<typeof LoginSchema>;
 type FormDataSingUp = yup.InferType<typeof SingUpSchema>;
-type FormDataConfirmEmail = yup.InferType<typeof ConfirmEmailSchema>;
+type FormDataConfirmEmail = yup.InferType<typeof ConfirmEmailSchema> & { email: string };
 
 type AuthContextType = {
   signIn: ({ email, password }: FormDataLogin) => Promise<void>;
   signUp: ({ email, password, first_name, last_name }: FormDataSingUp) => Promise<void>;
-  confirmCode: ({ confirmation_code }: FormDataConfirmEmail) => Promise<void>;
-  refreshCode: () => Promise<void>;
+  confirmCode: (confirmation_code: FormDataConfirmEmail) => Promise<void>;
+  resendConfirmationCode: (email: string) => Promise<void>;
   signOut: () => Promise<void>;
 };
 
@@ -25,78 +27,80 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: ChildrenContextProps) => {
   const { navigate } = useNavigation();
-  const baseURL = 'https://api.staging.aca.so/auth/sign-up';
+  const { saveUserData, removeUserData } = useStorage();
 
-  useEffect(() => {
-    // Verificar o token de autenticação ou outras informações de usuário ao carregar a aplicação.
-    // Você pode usar AsyncStorage para armazenar o token de forma segura.
-    // Se o usuário já estiver autenticado, defina setUser com os detalhes do usuário.
-  }, []);
+  const BASE_URL = 'https://api.staging.aca.so/auth/sign-up';
 
   const signIn = async ({ email, password }: FormDataLogin) => {
     try {
-      // const response = await api.post('auth/v2/login', { email, password });
-      // const userData = response.data;
-      // console.tron.log('SING-IN', userData);
+      const response = await axios.post(`${BASE_URL}/auth/v2/login`, { email, password });
 
-      //VAI SALVAR O TOKEN NA ASYNC
-
-      axios.post(baseURL, { email, password }).then((response) => {
-        console.tron.log('TESTE', response.data);
-      });
+      if (response.status === 200) {
+        saveUserData(response.data);
+        navigate('AppRoutes');
+      }
     } catch (error) {
-      console.tron.log(error);
+      console.log('login error:', error);
     }
   };
 
   const signUp = async ({ email, password, first_name, last_name }: FormDataSingUp) => {
-    const DATA = {
-      email,
-      password,
-      first_name,
-      last_name,
-    };
-
     try {
-      console.tron.log('SING-UP', DATA);
-      navigate('confirmemail');
+      const response = await axios.post(`${BASE_URL}/auth/sign-up`, {
+        email,
+        password,
+        first_name,
+        last_name,
+      });
+
+      if (response.status === 200) {
+        navigate('confirmemail', { email });
+      }
     } catch (error) {
-      // VALIDACAO DE ERRO API
-      console.tron.log('SING-UP', error);
+      if (error.response?.data?.message === 'Email registered but not confirmed') {
+        //Alert.alert('Atenção', 'E-mail já cadastrado porém não foi confirmado!');
+      } else {
+        // Alert.alert('Atenção', error.response?.data?.message || 'Ocorreu um erro ao fazer cadastro.!',);
+      }
     }
   };
 
-  const confirmCode = async ({ confirmation_code }: FormDataConfirmEmail) => {
-    const DATA = {
-      confirmation_code,
-    };
-
+  const confirmCode = async ({ confirmation_code, email }: FormDataConfirmEmail) => {
     try {
-      //TROCAR A ROTA NA ASYNC STORAGE
-      console.tron.log('CONFIRM-CODE', DATA);
+      const response = await axios.post(`${BASE_URL}/auth/v2/confirm-sign-up`, {
+        email,
+        confirmation_code,
+      });
+
+      if (response.status === 204) {
+        navigate('login');
+      }
     } catch (error) {
-      // VALIDACAO DE ERRO API
       console.tron.log('CONFIRM-CODE', error);
+      // Alert.alert('Atenção', error.response?.data?.message ||'Ocorreu um erro ao confirmar o e-mail. Verifique o código e tente novamente.!',);
     }
   };
 
-  const refreshCode = async () => {
+  const resendConfirmationCode = async (email: string) => {
     try {
-      // CHAMAR A API DE REFRESH TOKEN
-      console.tron.log('REFRESH-CODE');
+      const response = await axios.post(`${BASE_URL}/auth/resend-confirmation-code`, email);
+
+      if (response.status === 200) {
+        console.log('resend Confirmation Code success:', response.data);
+      }
     } catch (error) {
-      // VALIDACAO DE ERRO API
-      console.tron.log('REFRESH-CODE', error);
+      console.log('resend Confirmation Code error:', error);
+      // Alert.alert('Atenção', error.response?.data?.message || 'Ocorreu ao reenviar código. tente novamente mais tarde.!',);
     }
   };
 
   const signOut = async () => {
-    // REMOVER O TOKEN DE ASYNC STORAGE;
-    console.tron.log('SING-OUT');
+    removeUserData();
+    navigate('login');
   };
 
   return (
-    <AuthContext.Provider value={{ signIn, signOut, signUp, confirmCode, refreshCode }}>
+    <AuthContext.Provider value={{ signIn, signOut, signUp, confirmCode, resendConfirmationCode }}>
       {children}
     </AuthContext.Provider>
   );
