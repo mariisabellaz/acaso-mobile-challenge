@@ -4,6 +4,13 @@ import { useEffect, useState } from 'react';
 import { UserDataModel } from '@context/model/user.model';
 
 const STORAGE_KEY_USER = 'acaso:user';
+const STORAGE_KEY_TOKEN = 'acaso:token';
+
+type TokenProps = {
+  access_token: string;
+  id_token: string;
+  refresh_token: string;
+};
 
 export const useStorage = () => {
   const [userData, setUserData] = useState<UserDataModel>({} as UserDataModel);
@@ -54,5 +61,5 @@ export const useStorage = () => {
     }
   };
 
-  return { saveUserData, removeUserData, userData, isLoading };
+  return { saveUserData, removeUserData, userData, isLoading, userToken, saveToken };
 };

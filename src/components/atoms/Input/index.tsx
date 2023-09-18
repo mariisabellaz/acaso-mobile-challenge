@@ -8,14 +8,14 @@ type CommonInputProps = Partial<S.CustomTextInputProps> &
   TextInputProps & { testID?: string; isPassword?: boolean };
 
 export function Input({ hasError, isPassword = false, ...rest }: CommonInputProps) {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(true);
   const { COLORS } = useTheme();
 
   return (
     <S.Container>
       <S.Input
         placeholderTextColor={COLORS.TEXT.PRIMARY}
-        secureTextEntry={showPassword}
+        secureTextEntry={isPassword ? showPassword : false}
         {...rest}
       />
       {isPassword && (
