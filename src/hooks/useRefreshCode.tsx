@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 export const useRefreshCode = () => {
   const [countdown, setCountdown] = useState(120);
-  const [isCounting, setIsCounting] = useState(false);
+  const [isCounting, setIsCounting] = useState<boolean>(false);
 
   const startCountdown = () => {
     setIsCounting(true);

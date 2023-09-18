@@ -8,7 +8,7 @@ type CommonInputProps = Partial<S.CustomTextInputProps> &
   TextInputProps & { testID?: string; isPassword?: boolean };
 
 export function Input({ hasError, isPassword = false, ...rest }: CommonInputProps) {
-  const [showPassword, setShowPassword] = useState(true);
+  const [showPassword, setShowPassword] = useState<boolean>(true);
   const { COLORS } = useTheme();
 
   return (

@@ -1,8 +1,8 @@
 import { useFocusEffect } from '@react-navigation/native';
-import { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { useAuth } from '@context/authContext';
-import { useStorage } from '@hooks/useStorage';
+import { useUserData } from '@context/userContext';
 import { formattedDateString } from '@utils/formattedDateString';
 
 import { LoadIndicator } from '@components/atoms/Loading/styles';
@@ -13,12 +13,21 @@ import { CommonScreen } from '@components/templates/DefaultPage';
 import * as S from './styles';
 
 export function Profile() {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const { signOut } = useAuth();
-  const { isLoading, userData } = useStorage();
+  const { userData } = useUserData();
 
   useFocusEffect(
     useCallback(() => {
-      //
+      const timeoutFunction = () => {
+        setIsLoading(false);
+      };
+      const timeout = 5000;
+      const timerId = setTimeout(timeoutFunction, timeout);
+
+      return () => {
+        clearTimeout(timerId);
+      };
     }, [])
   );
 
