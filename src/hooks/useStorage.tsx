@@ -1,7 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useEffect, useState } from 'react';
+
+import { UserDataModel } from '@context/model/user.model';
+
 const STORAGE_KEY_USER = 'acaso:user';
 
 export const useStorage = () => {
+  const [userData, setUserData] = useState<UserDataModel>({} as UserDataModel);
+
   const saveUserData = async (userData: any) => {
     try {
       await AsyncStorage.setItem(STORAGE_KEY_USER, JSON.stringify(userData));
@@ -10,6 +16,30 @@ export const useStorage = () => {
       console.error('Erro ao salvar os dados do usuário:', error);
     }
   };
+
+  const readUserData = async () => {
+    try {
+      const userDataString = await AsyncStorage.getItem('user_data');
+      if (userDataString !== null) {
+        const userData = JSON.parse(userDataString);
+        if (userData?.user?.id && userData?.token?.id_token) {
+          setUserData({
+            ...userData.user,
+            id_token: userData.token.id_token,
+            access_token: userData.token.access_token,
+            refresh_token: userData.token.refresh_token,
+          });
+        }
+      }
+    } catch (error) {
+      // Tratar erros de remoção de dados aqui
+      console.log('Erro ao ler os dados do usuário:', error);
+    }
+  };
+
+  useEffect(() => {
+    readUserData();
+  }, []);
 
   const removeUserData = async () => {
     try {
@@ -21,5 +51,5 @@ export const useStorage = () => {
     }
   };
 
-  return { saveUserData, removeUserData };
+  return { saveUserData, removeUserData, userData };
 };

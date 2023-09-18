@@ -25,11 +25,11 @@ type ChildrenContextProps = { children: ReactNode };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+const BASE_URL = 'https://api.staging.aca.so';
+
 export const AuthProvider = ({ children }: ChildrenContextProps) => {
   const { navigate } = useNavigation();
   const { saveUserData, removeUserData } = useStorage();
-
-  const BASE_URL = 'https://api.staging.aca.so/auth/sign-up';
 
   const signIn = async ({ email, password }: FormDataLogin) => {
     try {
