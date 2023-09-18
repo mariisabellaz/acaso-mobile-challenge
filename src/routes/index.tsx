@@ -5,7 +5,7 @@ import { useTheme } from 'styled-components/native';
 import { AuthProvider } from '@context/authContext';
 import { UserProvider } from '@context/userContext';
 
-// import { AuthRoutes } from './auth.routes';
+//import { AuthRoutes } from './auth.routes';
 import { AppRoutes } from './app.routes';
 
 export function Routes() {

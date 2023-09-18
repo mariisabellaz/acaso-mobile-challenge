@@ -7,7 +7,7 @@ export function Header() {
   const insets = useSafeAreaInsets();
 
   return (
-    <S.Container top={insets} accessible={true} accessibilityRole="header">
+    <S.Container insets={insets} accessible={true} accessibilityRole="header">
       <S.Logo
         source={logoImg}
         accessible={true}

@@ -1,13 +1,13 @@
 import styled from 'styled-components/native';
 
 type CustomHeaderProps = {
-  top: any;
+  insets: any;
 };
 
 export const Container = styled.View<CustomHeaderProps>`
   width: 100%;
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND.PRIMARY};
-  margin-top: ${({ top }) => top}px;
+  margin-top: ${({ insets }) => insets}px;
   margin-bottom: ${({ theme }) => theme.SPACING.XL}px;
 
   flex-direction: row;
@@ -15,4 +15,6 @@ export const Container = styled.View<CustomHeaderProps>`
   justify-content: center;
 `;
 
-export const Logo = styled.Image``;
+export const Logo = styled.Image`
+  margin-top: ${({ theme }) => theme.SPACING.XS}px;
+`;

@@ -25,20 +25,21 @@ export function Profile() {
     return (
       <>
         <CardProfile imageSource={userData?.profile_picture} />
-        <Typography appearance="display_bold" alignment="center" label={userData?.first_name} />
-
-        <Typography
-          appearance="display"
-          alignment="center"
-          label={userData?.last_name?.toUpperCase()}
-        />
 
         <S.Container>
-          <Typography label={`Ativo `} />
-          <Typography appearance="button" label={formattedDateString(userData?.last_access_at)} />
-        </S.Container>
+          <Typography appearance="display_bold" alignment="center" label={userData?.first_name} />
 
-        <Button label="Sair de aca.so" appearance="small" accessibilityHint="Faz logoff" />
+          <Typography
+            appearance="display"
+            alignment="center"
+            label={userData?.last_name?.toUpperCase()}
+          />
+          <S.Row>
+            <Typography label={`Ativo `} />
+            <Typography appearance="button" label={formattedDateString(userData?.last_access_at)} />
+          </S.Row>
+          <Button label="Sair de aca.so" appearance="small" accessibilityHint="Faz logoff" />
+        </S.Container>
       </>
     );
   };

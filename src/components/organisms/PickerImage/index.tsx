@@ -41,10 +41,7 @@ export function PickerImage({ imageSource, onPressHiperlink, onPressChangePhoto,
   return (
     <S.Container>
       <S.ContainerAvatar>
-        <ThumbnailCircle.LinearCircle
-          imageSource={imageSource}
-          type={imageSource ? 'image' : 'icon'}
-        />
+        <ThumbnailCircle.LinearCircle imageSource={imageSource} />
       </S.ContainerAvatar>
 
       <S.ContainerButton>

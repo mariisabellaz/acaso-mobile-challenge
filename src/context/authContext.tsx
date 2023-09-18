@@ -1,5 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { ReactNode, createContext, useContext } from 'react';
+import axios from 'axios';
+import React, { ReactNode, createContext, useContext, useEffect } from 'react';
 import * as yup from 'yup';
 
 import { schema as ConfirmEmailSchema } from '@screens/ConfirmEmail/confirmEmail.yup';
@@ -24,19 +25,27 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: ChildrenContextProps) => {
   const { navigate } = useNavigation();
+  const baseURL = 'https://api.staging.aca.so/auth/sign-up';
+
+  useEffect(() => {
+    // Verificar o token de autenticação ou outras informações de usuário ao carregar a aplicação.
+    // Você pode usar AsyncStorage para armazenar o token de forma segura.
+    // Se o usuário já estiver autenticado, defina setUser com os detalhes do usuário.
+  }, []);
 
   const signIn = async ({ email, password }: FormDataLogin) => {
-    const DATA = {
-      email,
-      password,
-    };
-
     try {
-      //TROCAR A ROTA NA ASYNC STORAGE
-      console.tron.log('SING-IN', DATA);
+      // const response = await api.post('auth/v2/login', { email, password });
+      // const userData = response.data;
+      // console.tron.log('SING-IN', userData);
+
+      //VAI SALVAR O TOKEN NA ASYNC
+
+      axios.post(baseURL, { email, password }).then((response) => {
+        console.tron.log('TESTE', response.data);
+      });
     } catch (error) {
-      // VALIDACAO DE ERRO API
-      console.tron.log('SING-IN', error);
+      console.tron.log(error);
     }
   };
 

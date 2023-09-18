@@ -21,13 +21,13 @@ export function AddPhoto() {
   };
 
   return (
-    <CommonScreen.Header label="Insira uma foto para seu perfil de aca.so">
+    <CommonScreen.Heading label={`Insira uma foto para seu \nperfil de aca.so`} appearance="title">
       <PickerImage
         onPress={savePhoto}
         onPressChangePhoto={pickImage}
         onPressHiperlink={onPressHiperlink}
         imageSource={imageUri}
       />
-    </CommonScreen.Header>
+    </CommonScreen.Heading>
   );
 }
